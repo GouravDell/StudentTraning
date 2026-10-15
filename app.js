@@ -14,14 +14,18 @@ const { connectDB } = require("./config/dbCon");
 const app = express();
 
 // Global middleware
-app.use(
-  cors({
-    origin: true,
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: false,
-  })
-);
+
+const corsOptions = {
+  origin: "https://student-traning-sfn9.vercel.app",
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
+
+// Handle browser preflight requests
+app.options(/.*/, cors(corsOptions));
 
 app.use(express.json());
 app.use(helmet());
