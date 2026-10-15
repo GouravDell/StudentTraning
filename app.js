@@ -14,7 +14,15 @@ const { connectDB } = require("./config/dbCon");
 const app = express();
 
 // Global middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: false,
+  })
+);
+
 app.use(express.json());
 app.use(helmet());
 app.use(mongoSanitize());
