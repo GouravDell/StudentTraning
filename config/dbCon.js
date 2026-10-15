@@ -1,19 +1,23 @@
-const mongoose = require('mongoose');
+
+const mongoose = require("mongoose");
+
 module.exports = {
   connectDB: async () => {
     try {
-      mongoose.set("strictQuery", false)
-      await mongoose.connect(process.env.mongo_cloud, { useNewUrlParser: true });
-      console.log('database Connected');
-    } catch (err) {
-      console.error('Error database not connected', err);
-    }
-  }
-}
+      mongoose.set("strictQuery", false);
 
-// module.exports = {
-//     connectDB: async (dbUrl)=>{
-//         mongoose.set("strictQuery", false);
-//         return mongoose.connect(dbUrl,()=>console.log('db connected'))
-//     }
-// }
+      const mongoUrl = process.env.mongo_cloud;
+
+      if (!mongoUrl) {
+        throw new Error("mongo_cloud environment variable is missing");
+      }
+
+      await mongoose.connect(mongoUrl);
+
+      console.log("Database connected successfully");
+    } catch (err) {
+      console.error("Database connection failed:", err.message);
+      throw err;
+    }
+  },
+};
