@@ -32,7 +32,7 @@ export const authApi = createApi({
   reducerPath: "authApi",
 
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://student-traning.vercel.app/",
+    baseUrl: "https://student-traning-4k2u.vercel.app/",
     prepareHeaders: (headers) => {
       const token = localStorage.getItem("token");
 

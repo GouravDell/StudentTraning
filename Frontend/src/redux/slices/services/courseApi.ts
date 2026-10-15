@@ -49,7 +49,7 @@ export const courseApi = createApi({
     reducerPath: "courseApi",
 
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://student-traning.vercel.app/course/",
+        baseUrl: "https://student-traning-4k2u.vercel.app/course/",
 
         prepareHeaders: (headers) => {
             const token = localStorage.getItem("token");
